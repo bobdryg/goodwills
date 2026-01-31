@@ -1,0 +1,22 @@
+{
+  "name": "nft-ritual-clips",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "jsqr": "^1.4.0",
+    "jszip": "^3.10.1",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.2.0"
+  }
+}

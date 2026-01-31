@@ -1,0 +1,919 @@
+/* ===============================
+   BASE / LAYOUT
+   =============================== */
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #000;
+  color: #e5e7eb;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  overflow: hidden;
+}
+
+.studio {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+/* ===============================
+   BRAND TOP-LEFT
+   =============================== */
+
+.brand {
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  z-index: 20;
+}
+
+.brand__name {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-shadow: 0 0 8px rgba(255,255,255,0.9);
+}
+
+.brand__tag {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+/* Sleep button under logo */
+.sleep-btn {
+  margin-top: 10px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid #9ca3af;
+  background: linear-gradient(90deg, #0f172a, #020617);
+  color: #e5e7eb;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* ===============================
+   TOP RIGHT MENU
+   =============================== */
+
+.top-menu {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 20;
+}
+
+.top-menu button {
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: radial-gradient(circle at 30% 20%, #f3f4f6, #6b7280);
+  color: #020617;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 1px rgba(255,255,255,0.7),
+    0 2px 4px rgba(0,0,0,0.8);
+}
+
+.pill-btn {
+  padding: 4px 14px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: radial-gradient(circle at 30% 20%, #f3f4f6, #6b7280);
+  color: #020617;
+  font-size: 12px;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 1px rgba(255,255,255,0.7),
+    0 2px 4px rgba(0,0,0,0.8);
+}
+
+.howitworks-btn{ margin-top: 10px; }
+
+
+/* Submenus */
+.submenu {
+  position: absolute;
+  right: 112px;
+  width: 120px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #9ca3af;
+  background: rgba(15,23,42,0.96);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.9);
+  font-size: 13px;
+  z-index: 30;
+}
+
+.submenu--presets {
+  top: 35px;
+}
+
+.submenu--nature {
+  top: 65px;
+}
+
+.submenu--music {
+  top: 95px;
+}
+
+.submenu--share {
+  top: 125px;
+}
+
+.submenu--contest {
+  top: 155px;
+}
+
+.submenu button {
+  width: 100%;
+  margin-bottom: 6px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid #4b5563;
+  background: #111827;
+  color: #e5e7eb;
+  cursor: pointer;
+}
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  z-index: 20;
+}
+
+/* ===============================
+   BUTTONS
+   =============================== */
+
+.btn-metal {
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  background: radial-gradient(circle at 30% 20%, #f3f4f6, #6b7280);
+  color: #020617;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 1px rgba(255,255,255,0.7),
+    0 2px 4px rgba(0,0,0,0.85);
+  transition: 0.15s ease;
+}
+
+.btn-metal--small {
+  padding: 4px 8px;
+  border-radius: 9px;
+  font-size: 12px;
+}
+
+.btn-metal:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-metal:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 0 1px rgba(255,255,255,0.9),
+    0 4px 8px rgba(0,0,0,0.9);
+}
+
+.btn-metal:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 0 0 rgba(255,255,255,0.6),
+    0 1px 3px rgba(0,0,0,0.9);
+}
+
+/* ===============================
+   BIG PLAYER
+   =============================== */
+
+.big-player {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 14px;
+  border: 2px solid silver;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  z-index: 1;
+}
+
+.big-video-stage{
+  flex: 1 1 auto;
+  min-height: 0;
+  display: grid;
+}
+.big-video-stage > .big-video{
+  grid-area: 1 / 1;
+}
+.big-center-label{
+  grid-area: 1 / 1;
+  place-self: center;
+  font-size: 22px;
+  letter-spacing: 0.26em;
+  color: #b7d6ff;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.big-video {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* bottom panel */
+.big-bottom {
+  flex-shrink: 0;
+  padding: 6px 10px 10px;
+  background: rgba(0,0,0,0.65);
+  border-top: 1px solid silver;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.big-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #e5e7eb, transparent);
+}
+
+/* controls row */
+.big-controls-panel {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* timeline */
+.timeline {
+  appearance: none;
+  width: 100%;
+  cursor: pointer;
+  background: rgba(148,163,184,0.5);
+  border-radius: 999px;
+}
+
+.big-timeline {
+  height: 6px;
+}
+
+.mini-timeline {
+  height: 4px;
+}
+
+.timeline::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: radial-gradient(circle at 30% 20%, #f9fafb, #9ca3af);
+  box-shadow: 0 0 0 1px rgba(15,23,42,0.9);
+}
+
+.timeline::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid #9ca3af;
+  background: radial-gradient(circle at 30% 20%, #f9fafb, #9ca3af);
+}
+
+/* ===============================
+   РУЛЕТКА: мм / 5мм / 1см + цифры
+   =============================== */
+
+.timeline-ruler {
+  position: relative;
+  width: 100%;
+  height: 28px;
+  pointer-events: none;
+  margin-top: 2px;
+}
+
+/* сетка миллиметров */
+.timeline-ruler .mm-grid {
+  position: relative;
+  height: 18px;
+
+  background:
+    /* 1 мм — короткие риски */
+    repeating-linear-gradient(
+      to right,
+      #6b7280 0px,
+      #6b7280 1px,
+      transparent 1px 5px
+    ) top / auto 6px,
+
+    /* 5 мм — средние риски */
+    repeating-linear-gradient(
+      to right,
+      transparent 0 25px,
+      #9ca3af 25px,
+      #9ca3af 26px,
+      transparent 26px 50px
+    ) top / auto 10px,
+
+    /* 1 см — длинные риски */
+    repeating-linear-gradient(
+      to right,
+      transparent 0 50px,
+      #e5e7eb 0px,
+      #e5e7eb 2px,
+      transparent 2px 50px
+    ) top / auto 16px;
+
+  background-repeat: repeat-x;
+}
+
+/* цифры — СПРАВА от длинных рисок */
+.cm-labels {
+  position: relative;
+  height: 10px;
+  margin-top: -2px;
+}
+
+.cm-labels span {
+  position: absolute;
+  top: 2px;
+  transform: translateX(4px);
+  font-size: 10px;
+  color: #cfd3dc;
+  user-select: none;
+}
+/* Сдвигаем линейку (мм + см-риски) влево */
+.timeline-ruler--big .mm-grid,
+.timeline-ruler--mini .mm-grid {
+  background-position-x: -25px;
+}
+
+/* ===============================
+   MINI PLAYER
+   =============================== */
+
+.mini-player {
+  position: absolute;
+  right: 26px;
+  bottom: 116px;
+  width: 28%;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
+  border: 2px solid silver;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.8);
+  z-index: 5;
+}
+
+.mini-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mini-video--empty {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  position: relative;
+}
+
+.mini-empty-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.6);
+  pointer-events: none;
+}
+
+.mini-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* было: rgba(0,0,0,0.55). делаем чёрнее, как big */
+  background: rgba(0,0,0,0.75);
+
+  border-top: 1px solid silver;
+  padding: 4px 8px 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mini-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #cbd5f5, transparent);
+  margin-bottom: 0;
+}
+
+.mini-controls-panel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.mini-controls-panel--top {
+  margin: 0;
+}
+
+/* Mini-player logo */
+.mini-brand {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.mini-brand__name {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  opacity: 0.85;
+  text-shadow: 0 0 6px rgba(255,255,255,0.5);
+}
+
+/* ===============================
+   MIXER LEFT BOTTOM
+   =============================== */
+
+.mixer {
+  position: absolute;
+  left: 22px;
+  bottom: 116px;
+  padding: 12px 16px 14px;
+  border-radius: 16px;
+  border: 2px solid silver;
+  background: radial-gradient(circle at 0% 0%, rgba(55,65,81,0.8), rgba(15,23,42,0.9));
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.9),
+    inset 0 0 6px rgba(255,255,255,0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 7;
+}
+
+/* Faders row */
+.faders {
+  display: flex;
+  gap: 20px;
+  width: 100%;              /* важно: чтобы появилось "свободное место" */
+  justify-content: center;  /* и тогда центрирование заработает */
+}
+
+/* Single fader */
+.fader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.fader__label {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  opacity: 0.9;
+}
+
+/* track body */
+.fader__track {
+  position: relative;
+  width: 20px;
+  height: 150px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #9ca3af, #111827);
+  box-shadow:
+    inset 0 0 3px rgba(0,0,0,0.9),
+    0 0 4px rgba(0,0,0,0.9);
+  padding: 8px 0;
+}
+
+/* scale marks */
+.fader__scale {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fader__scale span {
+  width: 10px;
+  height: 1px;
+  background: #f3f4f6;
+}
+
+/* slider itself: horizontal, rotated */
+.fader input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  width: 130px;
+  height: 26px;
+  background: transparent;
+  margin: 0;
+}
+
+/* thumb: rectangular metallic 28x14 */
+.fader input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 28px;
+  height: 14px;
+  border-radius: 4px;
+  background: radial-gradient(circle at 30% 20%, #f3f4f6, #7c7c7c);
+  border: 1px solid #dcdcdc;
+  box-shadow:
+    0 0 0 1px rgba(15,23,42,0.9),
+    0 2px 4px rgba(0,0,0,0.8);
+  position: relative;
+}
+
+.fader input[type="range"]::-webkit-slider-thumb::after {
+  content: "";
+  position: absolute;
+  left: 15%;
+  right: 15%;
+  top: 50%;
+  height: 2px;
+  background: #000;
+  transform: translateY(-50%);
+  opacity: 0.9;
+}
+
+.fader input[type="range"]::-moz-range-thumb {
+  width: 28px;
+  height: 14px;
+  border-radius: 4px;
+  background: radial-gradient(circle at 30% 20%, #f3f4f6, #7c7c7c);
+  border: 1px solid #dcdcdc;
+}
+
+/* global transport buttons */
+.transport {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ===============================
+   SLEEP OVERLAY (фикс: накрывает весь экран)
+   =============================== */
+
+/* Раньше у тебя было position:absolute — может не накрывать viewport при некоторых раскладках :contentReference[oaicite:3]{index=3} */
+.night {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  cursor: pointer;
+  overflow: hidden;
+
+  background-image:
+    linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.55)),
+    url('/images/star_sky.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  animation: cameraMove 40s ease-in-out infinite alternate;
+}
+
+/* Плавное движение камеры */
+@keyframes cameraMove {
+  0%   { transform: scale(1.05) translate(0px, 0px); }
+  25%  { transform: scale(1.1) translate(-20px, 10px); }
+  50%  { transform: scale(1.12) translate(10px, -20px); }
+  75%  { transform: scale(1.08) translate(-15px, -10px); }
+  100% { transform: scale(1.05) translate(0px, 0px); }
+}
+
+/* ===============================
+   OPTIONAL: VISUAL RECORD DOT (если у тебя есть)
+   =============================== */
+
+.rec-dot-btn {
+  color: #7a0000 !important;
+  transition: 0.2s ease;
+  text-shadow: 0 0 4px #330000;
+}
+
+.rec-dot-btn.rec-on {
+  color: #ff0000 !important;
+  text-shadow: 0 0 8px #ff0000;
+}
+.rec-timer {
+  margin-left: 12px;
+  font-size: 13px;
+  font-family: monospace;
+  color: #e5e7eb;
+  transition: color 0.2s ease;
+}
+
+.rec-timer.rec-on {
+  color: #ff0000;
+}
+
+/* ===============================
+   GLUE BUTTON (timeline sync)
+   =============================== */
+
+.glue-btn{
+  border: 1px solid rgba(96,165,250,0.9) !important;
+  background: linear-gradient(90deg, #0b1f3a, #061022) !important;
+  color: #cfe8ff !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.glue-btn.glue-on{
+  border: 1px solid rgba(147,197,253,0.95) !important;
+  background: linear-gradient(90deg, #1d4ed8, #60a5fa) !important;
+  color: #020617 !important;
+  text-shadow: 0 0 8px rgba(147,197,253,0.9);
+}
+
+.mint-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.mint-window {
+  background: #111827;
+  border: 1px solid #374151;
+  padding: 16px 18px;
+  border-radius: 10px;
+  min-width: 320px;
+}
+
+.mint-window h3 {
+  margin-top: 0;
+}
+
+.mint-window label {
+  display: block;
+  margin: 10px 0;
+}
+
+.mint-window input,
+.mint-window select {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.mint-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.mint-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+
+.mint-dialog {
+  background: #0f172a;
+  border: 1px solid #4b5563;
+  padding: 18px;
+  border-radius: 12px;
+  width: 360px;
+  color: #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0,0,0,.8);
+}
+
+.mint-dialog h3 {
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.how-body h4{
+  margin: 10px 0 4px;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.9;
+}
+.how-body p{
+  margin: 6px 0;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+
+.mint-dialog label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.mint-dialog input,
+.mint-dialog textarea {
+  width: 100%;
+  margin-top: 4px;
+  background: #020617;
+  border: 1px solid #4b5563;
+  color: #f3f4f6;
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.mint-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+.btn-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+
+/* ===============================
+   SAVE PANEL extras (QR workflow)
+   =============================== */
+
+.save-window .save-error{
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,0,0,0.35);
+  background: rgba(120,0,0,0.18);
+  color: #ffb4b4;
+  font-size: 12px;
+}
+
+.save-window .save-hint{
+  margin-top: 10px;
+  opacity: 0.75;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+
+/* ===== Mint / My rituals dialogs: responsive ===== */
+.mint-overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.mint-window, .mint-dialog{
+  width: min(920px, 92vw);
+  max-height: 88vh;
+  overflow: auto;
+  border-radius: 14px;
+}
+
+.mint-preview video{
+  width: 100%;
+  height: auto;
+  max-height: 55vh;
+  border-radius: 12px;
+  display: block;
+}
+
+.top-menu__rituals{
+  font-family: "Cinzel", "UnifrakturCook", "Georgia", serif;
+  letter-spacing: 1px;
+}
+.mint-window,
+.mint-dialog {
+  width: min(520px, calc(100vw - 24px));
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.mint-body {
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+
+.mint-actions {
+  margin-top: auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 14px;
+  position: sticky;
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.96),
+    rgba(15, 23, 42, 0.78),
+    rgba(15, 23, 42, 0)
+  );
+}
+/* ===== GLUE button ===== */
+.btn-glue{
+  position: relative;
+  padding: 6px 12px;
+  border-radius: 10px;
+  letter-spacing: 0.14em; /* как у других */
+  text-transform: none;   /* 🔑 вот это главное */
+  font-size: 12px;
+}
+
+.btn-glue__label{
+  display: inline-block;
+}
+
+.btn-glue__mark{
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  bottom: 4px;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(59, 130, 246, 0.25); /* спокойный синий */
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
+}
+
+/* ON state */
+.btn-glue.glue-on{
+  box-shadow:
+    inset 0 0 1px rgba(255,255,255,0.9),
+    0 4px 10px rgba(0,0,0,0.9),
+    0 0 10px rgba(59,130,246,0.35);
+}
+
+.btn-glue.glue-on .btn-glue__mark{
+  background: rgba(59, 130, 246, 0.95); /* яркий синий */
+  box-shadow:
+    0 0 10px rgba(59,130,246,0.55),
+    inset 0 0 0 1px rgba(255,255,255,0.20);
+}
+/* Glue disabled state */
+.btn-disabled.btn-glue .btn-glue__mark {
+  background: rgba(255,255,255,0.15);
+  box-shadow: none;
+}
+
+/* Big Play/Stop disabled look (exclude glue) */
+.big-controls-panel .btn-metal.btn-disabled:not(.btn-glue),
+.big-controls-panel .btn-metal:disabled:not(.btn-glue) {
+  opacity: 1; /* не через прозрачность */
+  filter: grayscale(1) brightness(0.65);
+  transform: none;
+  box-shadow:
+    inset 0 0 2px rgba(255,255,255,0.25),
+    0 1px 2px rgba(0,0,0,0.6);
+}
+
+.big-controls-panel .btn-metal.btn-disabled:not(.btn-glue):hover,
+.big-controls-panel .btn-metal:disabled:not(.btn-glue):hover {
+  transform: none;
+}
+
