@@ -607,21 +607,23 @@ const Studio: React.FC = () => {
   };
 
   // ---------------- presets ----------------
+  const BASE = import.meta.env.BASE_URL; // на Pages это "/goodwills/"
+
   const applyPreset = (name: string) => {
     setIsGlued(false);
     setActiveMenu("none");
     switch (name) {
       case "Stormbound":
-        setBgSrc("/presets/storm_nature.mp4");
-        setMuSrc("/presets/storm_music.mp4");
+       setBgSrc(`${BASE}presets/storm_nature.mp4`);
+       setMuSrc(`${BASE}presets/storm_music.mp4`);
         break;
       case "SunsetBurn":
-        setBgSrc("/presets/sunset_nature.mp4");
-        setMuSrc("/presets/sunset_music.mp4");
+        setBgSrc(`${BASE}presets/sunset_nature.mp4`);
+        setMuSrc(`${BASE}presets/sunset_music.mp4`);
         break;
       case "VoidStare":
-        setBgSrc("/presets/void_nature.mp4");
-        setMuSrc("/presets/void_music.mp4");
+        setBgSrc(`${BASE}presets/void_nature.mp4`);
+        setMuSrc(`${BASE}presets/void_music.mp4`);
         break;
       default:
         return;
