@@ -1472,9 +1472,9 @@ const Studio: React.FC = () => {
                   <b>Mood:</b> {selectedPack.data.mood || "—"}
                 </p>
                 <p>
+                <p className="ritual-intention">
                   <b>Intention:</b> {selectedPack.data.intention || "—"}
-                </p>
-                <p>
+               </p>
                   <b>Duration:</b> {selectedPack.data.duration}s
                 </p>
                 <p>

@@ -917,3 +917,34 @@ body {
   transform: none;
 }
 
+/* ===============================
+   MY RITUALS MODAL — 13–14" FIX
+   =============================== */
+
+/* Уплотняем ТОЛЬКО содержимое My rituals */
+.mint-dialog p {
+  margin: 4px 0;
+  line-height: 1.25;
+}
+
+/* Оставляем "дыхание" только Intention */
+.mint-dialog .ritual-intention {
+  margin-top: 14px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* Видео — чтобы влезало на 14" */
+.mint-dialog .mint-preview {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.mint-dialog .mint-preview video {
+  max-height: 32vh;
+}
+
+/* Кнопки не прижимаем к краю */
+.mint-dialog .mint-actions {
+  margin-top: 10px;
+}
