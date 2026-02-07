@@ -950,19 +950,19 @@ body {
 }
 
 @media (max-width: 768px) {
-  .mobile-topbar {
+  .mobile-dock {
     position: fixed;
-    top: 8px;
+    left: 8px;
     right: 8px;
-
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    z-index: 55;
     display: flex;
-    gap: 8px;
-
-    z-index: 60;
+    flex-direction: column;
+    gap: 10px;
   }
 }
 
-  .mobile-menu-overlay {
+.mobile-menu-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
@@ -1029,5 +1029,23 @@ body {
   .mobile-dock .dock-mixer *,
   .mobile-dock .dock-timeline * {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-dock {
+    position: fixed;
+    left: 8px;
+    right: 8px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    z-index: 55;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* чтобы док не перекрывал сцену */
+  .big-player {
+    padding-bottom: 360px;
   }
 }
