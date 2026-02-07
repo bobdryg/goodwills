@@ -56,6 +56,12 @@ const Studio: React.FC = () => {
   // ===== UI state =====
   const [sleepMode, setSleepMode] = useState(false);
   const [activeMenu, setActiveMenu] = useState<ActiveMenu>("none");
+  const [isMobile, setIsMobile] = useState(
+  window.matchMedia("(max-width: 768px)").matches
+  );
+
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showMobileMusic, setShowMobileMusic] = useState(false);
 
   // My rituals (.mint packs)
   const ritualsMintInputRef = useRef<HTMLInputElement | null>(null);
@@ -191,6 +197,23 @@ const Studio: React.FC = () => {
     if (muGainRef.current) muGainRef.current.gain.value = muVol;
     if (masterGainRef.current) masterGainRef.current.gain.value = masterVol;
   }, [bgVol, muVol, masterVol]);
+ 
+  useEffect(() => {
+  const mq = window.matchMedia("(max-width: 768px)");
+
+  const handler = (e: MediaQueryListEvent) => {
+    setIsMobile(e.matches);
+
+    // при выходе из мобилки закрываем мобильные оверлеи
+    if (!e.matches) {
+      setShowMobileMenu(false);
+      setShowMobileMusic(false);
+    }
+  };
+
+  mq.addEventListener("change", handler);
+  return () => mq.removeEventListener("change", handler);
+}, []);
 
   // ---------------- QR helpers ----------------
   const isGoodwillsQRPayload = (txt: string) => {
@@ -526,8 +549,6 @@ const Studio: React.FC = () => {
       return next;
     });
   };
-
-  // ---------------- big/mini player buttons
 
   // ---------------- big/mini player buttons ----------------
   const handleBgPlayPause = () => {
@@ -1044,6 +1065,8 @@ const Studio: React.FC = () => {
       </div>
 
       {/* TOP MENU */}
+      {!isMobile && (
+    <div className="RIGHT_BUTTONS_BLOCK">
       <div className="top-menu">
         <button onClick={() => toggleMenu("presets")}>Samples</button>
         <button onClick={() => toggleMenu("nature")}>Load Nature</button>
@@ -1054,8 +1077,10 @@ const Studio: React.FC = () => {
           My rituals
         </button>
       </div>
-
+ 
       {activeMenu !== "none" && <div className="menu-overlay" onClick={() => setActiveMenu("none")} />}
+    </div>
+    )}
 
       {/* SUBMENUS */}
       {activeMenu === "presets" && (
@@ -1110,6 +1135,59 @@ const Studio: React.FC = () => {
           <button onClick={() => window.open("https://pixabay.com/music/", "_blank")}>Open free music libraries</button>
         </div>
       )}
+
+       {/* Mobile */}
+      {isMobile && (
+  <div className="mobile-topbar">
+    <button className="btn-metal" onClick={() => setShowMobileMenu(true)}>
+      Menu
+    </button>
+
+    <button
+      className="btn-metal"
+      onClick={() => setShowMobileMusic(v => !v)}
+    >
+      Music
+    </button>
+  </div>
+)}
+
+{isMobile && showMobileMenu && (
+  <div className="mobile-menu-overlay" onClick={() => setShowMobileMenu(false)}>
+    <div className="mobile-menu-sheet" onClick={e => e.stopPropagation()}>
+      <h3>Menu</h3>
+
+      {/* ВАЖНО: мы используем те же обработчики, что и на десктопе */}
+      <button className="btn-metal" onClick={() => { /* открыть Samples как у тебя */ setShowMobileMenu(false); }}>
+        Samples
+      </button>
+
+      <button className="btn-metal" onClick={() => { /* Load Nature */ setShowMobileMenu(false); }}>
+        Load Nature
+      </button>
+
+      <button className="btn-metal" onClick={() => { /* Load Music */ setShowMobileMenu(false); }}>
+        Load Music
+      </button>
+
+      <button className="btn-metal" onClick={() => { /* Share */ setShowMobileMenu(false); }}>
+        Share
+      </button>
+
+      <button className="btn-metal" onClick={() => { /* Contest */ setShowMobileMenu(false); }}>
+        Contest
+      </button>
+
+      <button className="btn-metal" onClick={() => { /* My rituals */ setShowMobileMenu(false); }}>
+        My rituals
+      </button>
+
+      <button className="btn-metal" onClick={() => setShowMobileMenu(false)}>
+        Close
+      </button>
+    </div>
+  </div>
+)}
 
 {/* BIG PLAYER */}
 <div className="big-player">

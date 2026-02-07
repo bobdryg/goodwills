@@ -948,3 +948,40 @@ body {
 .mint-dialog .mint-actions {
   margin-top: 10px;
 }
+@media (max-width: 768px) {
+  .mobile-topbar {
+    position: fixed;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    display: flex;
+    gap: 8px;
+    z-index: 50;
+  }
+
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  .mobile-menu-sheet {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 16px 16px 0 0;
+    padding: 12px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+    background: rgba(15, 18, 28, 0.98);
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+    display: grid;
+    gap: 10px;
+  }
+
+  .mobile-menu-sheet h3 {
+    margin: 0 0 4px 0;
+  }
+}
