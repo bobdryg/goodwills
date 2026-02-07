@@ -948,6 +948,7 @@ body {
 .mint-dialog .mint-actions {
   margin-top: 10px;
 }
+
 @media (max-width: 768px) {
   .mobile-topbar {
     position: fixed;
@@ -986,4 +987,3 @@ body {
   .mobile-menu-sheet h3 {
     margin: 0 0 4px 0;
   }
-}
