@@ -950,19 +950,19 @@ body {
 }
 
 @media (max-width: 768px) {
-  .mobile-dock {
+  .mobile-topbar {
     position: fixed;
-    left: 8px;
+    top: 8px;
     right: 8px;
-    bottom: calc(8px + env(safe-area-inset-bottom));
-    z-index: 55;
+
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    gap: 8px;
+
+    z-index: 60;
   }
 }
 
-.mobile-menu-overlay {
+  .mobile-menu-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
@@ -987,65 +987,3 @@ body {
   .mobile-menu-sheet h3 {
     margin: 0 0 4px 0;
   }
-
-  @media (max-width: 768px) {
-  :root {
-    --dock-gap: 10px;
-    --dock-pad: 8px;
-    --dock-height: 340px; /* запас под микшер + таймлайн */
-  }
-
-  /* чтобы контент сверху не прятался под док */
-  body {
-    padding-bottom: calc(var(--dock-height) + env(safe-area-inset-bottom));
-  }
-
-  .mobile-dock {
-    position: fixed;
-    left: var(--dock-pad);
-    right: var(--dock-pad);
-    bottom: calc(var(--dock-pad) + env(safe-area-inset-bottom));
-    z-index: 55;
-
-    display: flex;
-    flex-direction: column;
-    gap: var(--dock-gap);
-
-    /* на всякий случай */
-    max-width: calc(100vw - var(--dock-pad) * 2);
-  }
-
-  /* микшер в доке — на всю ширину */
-  .mobile-dock .dock-mixer {
-    width: 100%;
-  }
-
-  /* таймлайн в доке — на всю ширину */
-  .mobile-dock .dock-timeline {
-    width: 100%;
-  }
-
-  /* если твои старые панели имеют fixed/absolute — принудительно отпускаем */
-  .mobile-dock .dock-mixer *,
-  .mobile-dock .dock-timeline * {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .mobile-dock {
-    position: fixed;
-    left: 8px;
-    right: 8px;
-    bottom: calc(8px + env(safe-area-inset-bottom));
-    z-index: 55;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  /* чтобы док не перекрывал сцену */
-  .big-player {
-    padding-bottom: 360px;
-  }
-}

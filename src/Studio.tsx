@@ -1192,38 +1192,37 @@ const Studio: React.FC = () => {
 {/* BIG PLAYER */}
 <div className="big-player">
   <div className="big-video-stage">
-    <video
-      ref={bgRef}
-      className="big-video"
-      src={bgSrc ?? undefined}
-      loop
-      onTimeUpdate={handleBgTimeUpdate}
-    />
+          <video
+    ref={bgRef}
+    className="big-video"
+    src={bgSrc ?? undefined}
+    loop
+    onTimeUpdate={handleBgTimeUpdate}
+  />
 
-    {!bgSrc && <div className="big-center-label">LOAD NATURE</div>}
-  </div>
-
-  {/* ВАЖНО: низ превращаем в dock на мобиле */}
-  <div className={isMobile ? "mobile-dock dock-timeline" : "big-bottom"}>
-    {/* если хочешь сохранить разделитель на мобиле — оставь, если мешает — можно потом скрыть CSS */}
+          {!bgSrc && (
+            <div className="big-center-label">LOAD NATURE</div>
+          )}
+        </div>
+  <div className="big-bottom">
     <div className="big-divider" />
 
     <div className="big-controls-panel">
       <button
-        className={`btn-metal ${!bgSrc ? "btn-disabled" : ""}`}
-        onClick={() => bgSrc && handleBgPlayPause()}
-        disabled={!bgSrc}
-      >
-        ▶/❚❚
-      </button>
+  className={`btn-metal ${!bgSrc ? "btn-disabled" : ""}`}
+  onClick={() => bgSrc && handleBgPlayPause()}
+  disabled={!bgSrc}
+>
+  ▶/❚❚
+</button>
 
-      <button
-        className={`btn-metal ${!bgSrc ? "btn-disabled" : ""}`}
-        onClick={() => bgSrc && handleBgStop()}
-        disabled={!bgSrc}
-      >
-        ■
-      </button>
+<button
+  className={`btn-metal ${!bgSrc ? "btn-disabled" : ""}`}
+  onClick={() => bgSrc && handleBgStop()}
+  disabled={!bgSrc}
+>
+  ■
+</button>
 
       <div className={`rec-timer ${isRecording ? "rec-on" : ""}`}>
         {String(recTime).padStart(2, "0")} / {RECORD_LIMIT_SEC}
@@ -1250,20 +1249,19 @@ const Studio: React.FC = () => {
       onChange={(e) => handleBgTimelineChange(parseFloat(e.target.value))}
     />
 
-    {/* RULER */}
-    <div className="timeline-ruler timeline-ruler--big">
-      <div className="mm-grid"></div>
-      <div className="cm-labels">
-        {Array.from({ length: 30 }).map((_, i) => (
-          <span key={i} style={{ left: `${(i + 1) * 50}px` }}>
-            {i + 1}
-          </span>
-        ))}
+          {/* RULER */}
+          <div className="timeline-ruler timeline-ruler--big">
+            <div className="mm-grid"></div>
+            <div className="cm-labels">
+              {Array.from({ length: 30 }).map((_, i) => (
+                <span key={i} style={{ left: `${(i + 1) * 50}px` }}>
+                  {i + 1}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
-   
 
       {/* MINI PLAYER */}
       <div className="mini-player">
@@ -1322,96 +1320,70 @@ const Studio: React.FC = () => {
         </div>
       </div>
 
-     {/* MIXER + GLOBAL TRANSPORT */}
-<div className={isMobile ? "mobile-dock" : undefined}>
-  {/* BIG MIXER PANEL */}
-  <div className={isMobile ? "dock-mixer" : undefined}>
-    <div className="mixer">
-      <div className="faders">
-        <div className="fader">
-          <div className="fader__label">BIG</div>
-          <div className="fader__track">
-            <div className="fader__scale">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
+      {/* MIXER + GLOBAL TRANSPORT */}
+      <div className="mixer">
+        <div className="faders">
+          <div className="fader">
+            <div className="fader__label">BIG</div>
+            <div className="fader__track">
+              <div className="fader__scale">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+              <input type="range" min={0} max={1} step={0.01} value={bgVol} onChange={e => setBgVol(parseFloat(e.target.value))} />
             </div>
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.01}
-              value={bgVol}
-              onChange={(e) => setBgVol(parseFloat(e.target.value))}
-            />
+          </div>
+
+          <div className="fader">
+            <div className="fader__label">SMALL</div>
+            <div className="fader__track">
+              <div className="fader__scale">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+              <input type="range" min={0} max={1} step={0.01} value={muVol} onChange={e => setMuVol(parseFloat(e.target.value))} />
+            </div>
+          </div>
+
+          <div className="fader">
+            <div className="fader__label">MASTER</div>
+            <div className="fader__track">
+              <div className="fader__scale">
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+              <input type="range" min={0} max={1} step={0.01} value={masterVol} onChange={e => setMasterVol(parseFloat(e.target.value))} />
+            </div>
           </div>
         </div>
 
-        <div className="fader">
-          <div className="fader__label">SMALL</div>
-          <div className="fader__track">
-            <div className="fader__scale">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.01}
-              value={muVol}
-              onChange={(e) => setMuVol(parseFloat(e.target.value))}
-            />
-          </div>
-        </div>
-
-        <div className="fader">
-          <div className="fader__label">MASTER</div>
-          <div className="fader__track">
-            <div className="fader__scale">
-              <span />
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.01}
-              value={masterVol}
-              onChange={(e) => setMasterVol(parseFloat(e.target.value))}
-            />
-          </div>
+        <div className="transport">
+          <button className="btn-metal" onClick={handleGlobalPlayPause}>
+            ▶/❚❚
+          </button>
+          <button className="btn-metal" onClick={handleGlobalStop}>
+            ■
+          </button>
+          <button
+            className={`btn-metal rec-dot-btn ${isRecording ? "rec-on" : ""} `}
+            onClick={handleGlobalRec}
+          >
+            ●
+          </button>
+          <button className="btn-metal" onClick={handleGlobalMint}>
+            mint
+          </button>
         </div>
       </div>
-
-      <div className="transport">
-        <button className="btn-metal" onClick={handleGlobalPlayPause}>
-          ▶/❚❚
-        </button>
-        <button className="btn-metal" onClick={handleGlobalStop}>
-          ■
-        </button>
-        <button
-          className={`btn-metal rec-dot-btn ${isRecording ? "rec-on" : ""}`}
-          onClick={handleGlobalRec}
-        >
-          ●
-        </button>
-        <button className="btn-metal" onClick={handleGlobalMint}>
-          mint
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
       {/* HIDDEN INPUTS */}
       <input id="upload-nature" type="file" accept="video/*" style={{ display: "none" }} onChange={handleUploadNature} />
