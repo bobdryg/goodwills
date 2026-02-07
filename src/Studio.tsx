@@ -1250,6 +1250,8 @@ const Studio: React.FC = () => {
     />
 
           {/* RULER */}
+          {/* TIMELINE / GLUE PANEL */}
+    <div className="dock-timeline"></div>
           <div className="timeline-ruler timeline-ruler--big">
             <div className="mm-grid"></div>
             <div className="cm-labels">
@@ -1262,6 +1264,8 @@ const Studio: React.FC = () => {
           </div>
         </div>
       </div>
+    
+          
 
       {/* MINI PLAYER */}
       <div className="mini-player">
@@ -1321,6 +1325,9 @@ const Studio: React.FC = () => {
       </div>
 
       {/* MIXER + GLOBAL TRANSPORT */}
+      <div className={isMobile ? "mobile-dock" : undefined}>
+  {   /* BIG MIXER PANEL */}
+   <div className="dock-mixer"></div>
       <div className="mixer">
         <div className="faders">
           <div className="fader">
@@ -1384,6 +1391,7 @@ const Studio: React.FC = () => {
           </button>
         </div>
       </div>
+    </div>
 
       {/* HIDDEN INPUTS */}
       <input id="upload-nature" type="file" accept="video/*" style={{ display: "none" }} onChange={handleUploadNature} />
