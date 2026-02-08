@@ -61,8 +61,7 @@ const Studio: React.FC = () => {
   );
 
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [showMobileMusic, setShowMobileMusic] = useState(false);
-
+  
   // My rituals (.mint packs)
   const ritualsMintInputRef = useRef<HTMLInputElement | null>(null);
   const [showMyRituals, setShowMyRituals] = useState(false);
@@ -207,7 +206,6 @@ const Studio: React.FC = () => {
     // при выходе из мобилки закрываем мобильные оверлеи
     if (!e.matches) {
       setShowMobileMenu(false);
-      setShowMobileMusic(false);
     }
   };
 
@@ -1064,23 +1062,43 @@ const Studio: React.FC = () => {
         </button>
       </div>
 
-      {/* TOP MENU */}
-      {!isMobile && (
-    <div className="RIGHT_BUTTONS_BLOCK">
-      <div className="top-menu">
-        <button onClick={() => toggleMenu("presets")}>Samples</button>
-        <button onClick={() => toggleMenu("nature")}>Load Nature</button>
-        <button onClick={() => toggleMenu("music")}>Load Music</button>
-        <button onClick={() => toggleMenu("share")}>Share</button>
-        <button onClick={() => toggleMenu("contest")}>Contest</button>
-        <button className="top-menu__rituals" onClick={openMyRituals}>
-          My rituals
+     {/* TOP MENU */}
+{(!isMobile || showMobileMenu) && (
+  <>
+    <div className="top-menu">
+      <button onClick={() => toggleMenu("presets")}>Samples</button>
+      <button onClick={() => toggleMenu("nature")}>Load Nature</button>
+      <button onClick={() => toggleMenu("music")}>Load Music</button>
+      <button onClick={() => toggleMenu("share")}>Share</button>
+      <button onClick={() => toggleMenu("contest")}>Contest</button>
+      <button className="top-menu__rituals" onClick={openMyRituals}>
+        My rituals
+      </button>
+
+      {/* Mobile: close button inside old menu block */}
+      {isMobile && (
+        <button
+          onClick={() => {
+            setActiveMenu("none");
+            setShowMobileMenu(false);
+          }}
+        >
+          Close
         </button>
-      </div>
- 
-      {activeMenu !== "none" && <div className="menu-overlay" onClick={() => setActiveMenu("none")} />}
+      )}
     </div>
+
+    {activeMenu !== "none" && (
+      <div
+        className="menu-overlay"
+        onClick={() => {
+          setActiveMenu("none");
+          if (isMobile) setShowMobileMenu(false); // клик вне меню закрывает всё
+        }}
+      />
     )}
+  </>
+)}
 
       {/* SUBMENUS */}
       {activeMenu === "presets" && (
@@ -1136,18 +1154,20 @@ const Studio: React.FC = () => {
         </div>
       )}
 
-       {/* Mobile */}
-      {isMobile && (
+{/* Mobile: single Menu button */}
+{isMobile && (
   <div className="mobile-topbar">
-    <button className="btn-metal" onClick={() => setShowMobileMenu(true)}>
-      Menu
-    </button>
-
     <button
       className="btn-metal"
-      onClick={() => setShowMobileMusic(v => !v)}
+      onClick={() => {
+        setShowMobileMenu(v => {
+          const next = !v;
+          if (!next) setActiveMenu("none"); // закрываем сабменю вместе с меню
+          return next;
+        });
+      }}
     >
-      Music
+      Menu
     </button>
   </div>
 )}

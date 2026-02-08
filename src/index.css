@@ -952,13 +952,11 @@ body {
 @media (max-width: 768px) {
   .mobile-topbar {
     position: fixed;
-    top: 8px;
-    right: 8px;
-
+    top: 12px;
+    right: 12px;
+    z-index: 9999;
     display: flex;
-    gap: 8px;
-
-    z-index: 60;
+    gap: 10px;
   }
 }
 
@@ -987,3 +985,24 @@ body {
   .mobile-menu-sheet h3 {
     margin: 0 0 4px 0;
   }
+
+  @media (max-width: 768px) {
+  /* делаем линейку в 2 раза тоньше по высоте */
+
+  .timeline-ruler {
+    height: 14px;           /* было ~28px */
+  }
+
+  .timeline-ruler .mm-grid {
+    height: 8px;            /* было ~16–18px */
+  }
+
+  .timeline-ruler .cm-labels {
+    top: 8px;               /* было ~16px */
+  }
+
+  .timeline-ruler .cm-labels span {
+    font-size: 9px;         /* чтобы цифры не торчали */
+    line-height: 1;
+  }
+}
