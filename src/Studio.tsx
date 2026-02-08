@@ -1136,60 +1136,7 @@ const Studio: React.FC = () => {
         </div>
       )}
 
-       {/* Mobile */}
-      {isMobile && (
-  <div className="mobile-topbar">
-    <button className="btn-metal" onClick={() => setShowMobileMenu(true)}>
-      Menu
-    </button>
-
-    <button
-      className="btn-metal"
-      onClick={() => setShowMobileMusic(v => !v)}
-    >
-      Music
-    </button>
-  </div>
-)}
-
-{isMobile && showMobileMenu && (
-  <div className="mobile-menu-overlay" onClick={() => setShowMobileMenu(false)}>
-    <div className="mobile-menu-sheet" onClick={e => e.stopPropagation()}>
-      <h3>Menu</h3>
-
-      {/* ВАЖНО: мы используем те же обработчики, что и на десктопе */}
-      <button className="btn-metal" onClick={() => { /* открыть Samples как у тебя */ setShowMobileMenu(false); }}>
-        Samples
-      </button>
-
-      <button className="btn-metal" onClick={() => { /* Load Nature */ setShowMobileMenu(false); }}>
-        Load Nature
-      </button>
-
-      <button className="btn-metal" onClick={() => { /* Load Music */ setShowMobileMenu(false); }}>
-        Load Music
-      </button>
-
-      <button className="btn-metal" onClick={() => { /* Share */ setShowMobileMenu(false); }}>
-        Share
-      </button>
-
-      <button className="btn-metal" onClick={() => { /* Contest */ setShowMobileMenu(false); }}>
-        Contest
-      </button>
-
-      <button className="btn-metal" onClick={() => { /* My rituals */ setShowMobileMenu(false); }}>
-        My rituals
-      </button>
-
-      <button className="btn-metal" onClick={() => setShowMobileMenu(false)}>
-        Close
-      </button>
-    </div>
-  </div>
-)}
-
-{/* BIG PLAYER */}
+ {/* BIG PLAYER */}
 <div className="big-player">
   <div className="big-video-stage">
           <video
