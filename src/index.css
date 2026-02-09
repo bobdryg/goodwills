@@ -544,7 +544,7 @@ body {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%) rotate(-90deg);
-  width: 130px;
+  width: 160px;
   height: 26px;
   background: transparent;
   margin: 0;
@@ -1003,5 +1003,214 @@ body {
   .rec-timer {
     line-height: 1;
     padding: 4px 8px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* =========================
+     BIG controls row (▶ ■ timer glue)
+     ========================= */
+  .big-controls-panel{
+    height: 32px !important;
+    min-height: 32px !important;
+    padding: 0 6px !important;
+    gap: 6px !important;
+    align-items: center !important;
+  }
+
+  .big-controls-panel .btn-metal{
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 0 10px !important;
+    line-height: 28px !important;
+  }
+
+  .big-controls-panel .rec-timer{
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 0 8px !important;
+    line-height: 28px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* =========================
+     MINI controls row (в маленьком плеере сверху)
+     ========================= */
+  .mini-controls-panel--top{
+    height: 32px !important;
+    min-height: 32px !important;
+    padding: 0 6px !important;
+    gap: 6px !important;
+    align-items: center !important;
+  }
+
+  .mini-controls-panel--top .btn-metal{
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 0 8px !important;
+    line-height: 28px !important;
+  }
+
+}
+
+/* =========================
+   MOBILE UI COMPACT PATCH
+   ========================= */
+@media (max-width: 768px) {
+
+  /* --- 1. TOP MENU: сдвигаем вниз, чтобы Menu не перекрывал Samples --- */
+  .top-menu {
+    top: 42px;        /* было ~18px */
+    right: 12px;
+    gap: 6px;
+  }
+
+  .top-menu button {
+    padding: 6px 12px;
+    font-size: 13px;
+    min-height: 32px;
+  }
+
+  /* --- 2. MIXER: уменьшаем РЕАЛЬНЫЙ блок --- */
+  .mixer {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .faders {
+    gap: 14px;
+  }
+
+  .fader {
+    height: 116px;        /* было ~220–240 */
+  }
+
+  .fader__track {
+    height: 90px;
+  }
+
+  .transport {
+    gap: 8px;
+  }
+
+  .transport .btn-metal {
+    padding: 6px 10px;
+    min-height: 30px;
+    font-size: 13px;
+  }
+
+  /* --- 3. BIG PLAYER: блок кнопок ниже по высоте --- */
+  .big-bottom {
+    padding: 4px 8px 6px;
+    gap: 4px;
+  }
+
+  .big-controls-panel {
+    gap: 6px;
+  }
+
+  .big-controls-panel .btn-metal {
+    padding: 6px 10px;
+    min-height: 30px;
+    font-size: 13px;
+  }
+
+  .rec-timer {
+    font-size: 13px;
+    min-width: 70px;
+  }
+
+  /* --- 4. MINI PLAYER: тоже ужимаем --- */
+  .mini-bottom {
+    padding: 4px 6px;
+    gap: 4px;
+  }
+
+  .mini-controls-panel--top {
+    gap: 6px;
+  }
+
+  .mini-controls-panel--top .btn-metal {
+    padding: 5px 8px;
+    min-height: 28px;
+    font-size: 12px;
+  }
+
+  /* --- 5. TIMELINE / RULER: блок в 2 раза ниже --- */
+  .timeline {
+    height: 20px;        /* было ~36–40 */
+  }
+
+  .timeline-ruler {
+    height: 14px;        /* было ~28 */
+  }
+
+  .timeline-ruler .mm-grid {
+    height: 8px;
+  }
+
+  .cm-labels {
+    height: 6px;
+    margin-top: -2px;
+  }
+
+  .cm-labels span {
+    font-size: 8px;
+    line-height: 1;
+  }
+}
+@media (max-width: 768px) {
+
+  /* 1) Ужимаем общий контейнер низа */
+  .big-bottom,
+  .mini-bottom {
+    padding: 2px 4px !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* 2) Ужимаем ряд кнопок (то, что ты называешь "блок управления") */
+  .big-controls-panel,
+  .mini-controls-panel {
+    height: 30px !important;
+    min-height: 30px !important;
+    padding: 0 4px !important;
+    gap: 6px !important;
+    align-items: center !important;
+  }
+
+  .big-controls-panel .btn-metal,
+  .mini-controls-panel .btn-metal {
+    height: 26px !important;
+    min-height: 26px !important;
+    line-height: 26px !important;
+    padding: 0 8px !important;
+  }
+
+  .big-controls-panel .rec-timer {
+    height: 26px !important;
+    min-height: 26px !important;
+    line-height: 26px !important;
+    padding: 0 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* 3) Тоньше делаем сам таймлайн (ползунок) */
+  input.timeline.big-timeline,
+  input.timeline.mini-timeline {
+    height: 5px !important;
+    margin: 2px 0 !important;
+  }
+
+  /* 4) Тоньше делаем блок линейки (ruler) */
+  .timeline-ruler--big,
+  .timeline-ruler--mini {
+    height: 18px !important;
+    margin-top: 2px !important;
   }
 }
