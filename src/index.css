@@ -956,110 +956,9 @@ body {
     right: 12px;
     z-index: 9999;
     display: flex;
-    gap: 10px;
+    gap: 0px;
   }
 }
-
-  @media (max-width: 768px) {
-  /* делаем линейку в 2 раза тоньше по высоте */
-
-  .timeline-ruler {
-    height: 14px;           /* было ~28px */
-  }
-
-  .timeline-ruler .mm-grid {
-    height: 8px;            /* было ~16–18px */
-  }
-
-  .timeline-ruler .cm-labels {
-    top: 8px;               /* было ~16px */
-  }
-
-  .timeline-ruler .cm-labels span {
-    font-size: 9px;         /* чтобы цифры не торчали */
-    line-height: 1;
-  }
-}
-
-@media (max-width: 768px) {
-  /* панель кнопок/таймера у обоих плееров */
-  .big-controls-panel,
-  .mini-controls-panel,
-  .mini-controls,
-  .controls-panel {
-    transform: scaleY(0.5);
-    transform-origin: top center;
-  }
-
-  /* кнопки внутри тоже чуть ужмём по высоте */
-  .big-controls-panel .btn-metal,
-  .mini-controls-panel .btn-metal,
-  .mini-controls .btn-metal {
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
-
-  /* таймер — чтобы не раздувал панель */
-  .rec-timer {
-    line-height: 1;
-    padding: 4px 8px;
-  }
-}
-
-@media (max-width: 768px) {
-
-  /* =========================
-     BIG controls row (▶ ■ timer glue)
-     ========================= */
-  .big-controls-panel{
-    height: 32px !important;
-    min-height: 32px !important;
-    padding: 0 6px !important;
-    gap: 6px !important;
-    align-items: center !important;
-  }
-
-  .big-controls-panel .btn-metal{
-    height: 28px !important;
-    min-height: 28px !important;
-    padding: 0 10px !important;
-    line-height: 28px !important;
-  }
-
-  .big-controls-panel .rec-timer{
-    height: 28px !important;
-    min-height: 28px !important;
-    padding: 0 8px !important;
-    line-height: 28px !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  /* =========================
-     MINI controls row (в маленьком плеере сверху)
-     ========================= */
-  .mini-controls-panel--top{
-    height: 32px !important;
-    min-height: 32px !important;
-    padding: 0 6px !important;
-    gap: 6px !important;
-    align-items: center !important;
-  }
-
-  .mini-controls-panel--top .btn-metal{
-    height: 28px !important;
-    min-height: 28px !important;
-    padding: 0 8px !important;
-    line-height: 28px !important;
-  }
-
-}
-
-/* =========================
-   MOBILE UI COMPACT PATCH
-   ========================= */
-@media (max-width: 768px) {
 
   /* --- 1. TOP MENU: сдвигаем вниз, чтобы Menu не перекрывал Samples --- */
   .top-menu {
@@ -1076,8 +975,8 @@ body {
 
   /* --- 2. MIXER: уменьшаем РЕАЛЬНЫЙ блок --- */
   .mixer {
-    padding: 10px 12px;
-    gap: 10px;
+    padding: 2px 2px;
+    gap: 0px;
   }
 
   .faders {
@@ -1085,15 +984,15 @@ body {
   }
 
   .fader {
-    height: 116px;        /* было ~220–240 */
+    height: 160px;        /* было ~220–240 */
   }
 
   .fader__track {
-    height: 90px;
+    height: 120px;
   }
 
   .transport {
-    gap: 8px;
+    gap: 4px;
   }
 
   .transport .btn-metal {
@@ -1161,8 +1060,6 @@ body {
     font-size: 8px;
     line-height: 1;
   }
-}
-@media (max-width: 768px) {
 
   /* 1) Ужимаем общий контейнер низа */
   .big-bottom,
@@ -1210,7 +1107,7 @@ body {
   /* 4) Тоньше делаем блок линейки (ruler) */
   .timeline-ruler--big,
   .timeline-ruler--mini {
-    height: 18px !important;
-    margin-top: 2px !important;
+    height: 16px !important;
+    margin-top: 0px !important;
   }
-}
+ 

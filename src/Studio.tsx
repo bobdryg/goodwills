@@ -1582,7 +1582,7 @@ const Studio: React.FC = () => {
               <p>
                 <b>GOODWILLS</b> is a ritual instrument. There is no automation — you are always in control.
               </p>
-
+              
               <h4>1) Choose nature</h4>
               <p>Select a background that matches your current state.</p>
 
@@ -1597,7 +1597,19 @@ const Studio: React.FC = () => {
 
               <h4>5) Record & mint</h4>
               <p>Press <b>Record</b> when it feels right (max {RECORD_LIMIT_SEC}s). Then mint into a <b>.mint</b> file to store or share.</p>
-            </div>
+            
+              <p>
+                👉{" "} 
+                <a
+      href="https://youtu.be/fgqpXFjC5H8?si=1ROiFCVOBA9AktDs"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="how-link"
+    >
+      Watch a short instructional video
+    </a>
+    </p>
+ </div>
 
             <div className="mint-actions">
               <button className="btn-metal" onClick={() => setShowHowItWorks(false)}>
