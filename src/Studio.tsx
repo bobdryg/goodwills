@@ -1187,6 +1187,142 @@ const Studio: React.FC = () => {
             <div className="big-center-label">LOAD NATURE</div>
           )}
         </div>
+
+{/* MOBILE FLOATS: мини-плеер + микшер опускаем к панели big-controls */}
+{isMobile && (
+  <div className="mobile-floats">
+    {/* MIXER */}
+    <div className="mixer">
+      <div className="faders">
+        <div className="fader">
+          <div className="fader__label">BIG</div>
+          <div className="fader__track">
+            <div className="fader__scale">
+              <span /><span /><span /><span /><span />
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.01}
+              value={bgVol}
+              onChange={(e) => setBgVol(parseFloat(e.target.value))}
+            />
+          </div>
+        </div>
+
+        <div className="fader">
+          <div className="fader__label">SMALL</div>
+          <div className="fader__track">
+            <div className="fader__scale">
+              <span /><span /><span /><span /><span />
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.01}
+              value={muVol}
+              onChange={(e) => setMuVol(parseFloat(e.target.value))}
+            />
+          </div>
+        </div>
+
+        <div className="fader">
+          <div className="fader__label">MASTER</div>
+          <div className="fader__track">
+            <div className="fader__scale">
+              <span /><span /><span /><span /><span />
+            </div>
+            <input
+              type="range"
+              min={0}
+              max={1}
+              step={0.01}
+              value={masterVol}
+              onChange={(e) => setMasterVol(parseFloat(e.target.value))}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="transport">
+        <button className="btn-metal" onClick={handleGlobalPlayPause}>▶/❚❚</button>
+        <button className="btn-metal" onClick={handleGlobalStop}>■</button>
+        <button
+          className={`btn-metal rec-dot-btn ${isRecording ? "rec-on" : ""}`}
+          onClick={handleGlobalRec}
+        >
+          ●
+        </button>
+        <button className="btn-metal" onClick={handleGlobalMint}>mint</button>
+      </div>
+    </div>
+
+    {/* MINI PLAYER */}
+    <div className="mini-player">
+      {muSrc ? (
+        <video
+          ref={muRef}
+          className="mini-video"
+          src={muSrc}
+          loop
+          onTimeUpdate={handleMuTimeUpdate}
+        />
+      ) : (
+        <div className="mini-video mini-video--empty">
+          <div className="mini-empty-text">LOAD MUSIC</div>
+        </div>
+      )}
+
+      <div className="mini-bottom">
+        <div className="mini-divider" />
+
+        <div className="mini-controls-panel">
+          <button className="btn-metal btn-metal--small" onClick={handleMuPlayPause} disabled={!muSrc}>
+            ▶/❚❚
+          </button>
+          <button className="btn-metal btn-metal--small" onClick={handleMuStop} disabled={!muSrc}>
+            ■
+          </button>
+
+          <button
+            className={`btn-metal btn-metal--small btn-glue ${isGlued ? "glue-on" : ""} ${!muSrc ? "btn-disabled" : ""}`}
+            onClick={() => muSrc && toggleGlue()}
+            disabled={!muSrc}
+            title="Glue timelines"
+          >
+            <span className="btn-glue__label">glue</span>
+            <span className="btn-glue__mark" />
+          </button>
+        </div>
+
+        <input
+          className="timeline mini-timeline"
+          type="range"
+          min={0}
+          max={1}
+          step={0.001}
+          value={muProgress}
+          onChange={(e) => muSrc && handleMuTimelineChange(parseFloat(e.target.value))}
+          disabled={!muSrc}
+        />
+
+        <div className="timeline-ruler timeline-ruler--mini">
+          <div className="mm-grid"></div>
+          <div className="cm-labels">
+            {Array.from({ length: 30 }).map((_, i) => (
+              <span key={i} style={{ left: `${(i + 1) * 50}px` }}>
+                {i + 1}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)}
+
   <div className="big-bottom">
     <div className="big-divider" />
 
@@ -1246,6 +1382,8 @@ const Studio: React.FC = () => {
         </div>
       </div>
 
+     {!isMobile && (
+       <>
       {/* MINI PLAYER */}
       <div className="mini-player">
         {muSrc ? (
@@ -1367,6 +1505,8 @@ const Studio: React.FC = () => {
           </button>
         </div>
       </div>
+          </>
+        )}
 
       {/* HIDDEN INPUTS */}
       <input id="upload-nature" type="file" accept="video/*" style={{ display: "none" }} onChange={handleUploadNature} />
