@@ -1746,7 +1746,7 @@ const Studio: React.FC = () => {
       rel="noopener noreferrer"
       className="how-link"
     >
-      Watch a short instructional video
+      Watch a short demonstration video
     </a>
     </p>
  </div>
