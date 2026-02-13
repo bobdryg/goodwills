@@ -32,15 +32,34 @@ self.addEventListener("fetch", (event) => {
   // НЕ кэшируем медиа
   if (event.request.destination === "video" || event.request.destination === "audio") return;
 
-  // Навигация: сеть → кэш
+  // Навигация: сеть → кэш fallback
   if (event.request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request).catch(() => caches.match("/goodwills/"))
+      fetch(event.request).catch(() => caches.match("/goodwills/index.html"))
     );
     return;
   }
 
-  // Статика: кэш → сеть
+  // Статика (js/css/img/font): cache-first
+  const dest = event.request.destination;
+  const isStatic =
+    dest === "script" || dest === "style" || dest === "image" || dest === "font";
+
+  if (isStatic) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        if (cached) return cached;
+        return fetch(event.request).then((resp) => {
+          const copy = resp.clone();
+          caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+          return resp;
+        });
+      })
+    );
+    return;
+  }
+
+  // Остальное: как было
   event.respondWith(
     caches.match(event.request).then((cached) => cached || fetch(event.request))
   );
