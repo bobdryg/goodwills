@@ -1093,7 +1093,7 @@ body {
 
   .mini-player {
     width: 92% !important;      /* было условно 100% */
-    max-width: 180px;           /* ограничиваем сжатие */
+    max-width: 175px;           /* ограничиваем сжатие */
     margin: 0 auto;
     flex-shrink: 0;             /* запрещаем сжиматься */
 }
