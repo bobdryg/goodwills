@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import QRCode from "qrcode";
 import jsQR from "jsqr";
 import JSZip from "jszip";
+import { Headphones } from "lucide-react";
+
 
 type ActiveMenu = "none" | "presets" | "share" | "contest" | "nature" | "music";
 
@@ -1183,9 +1185,14 @@ const Studio: React.FC = () => {
     onTimeUpdate={handleBgTimeUpdate}
   />
 
-          {!bgSrc && (
-            <div className="big-center-label">LOAD NATURE</div>
-          )}
+     {!bgSrc && (
+  <div className="big-center-label">
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 10 }}>
+      <Headphones size={26} strokeWidth={1.5} style={{ opacity: 0.7 }} />
+      <span style={{ letterSpacing: "0.25em" }}>LOAD NATURE</span>
+    </div>
+  </div>
+)}
         </div>
 
 {/* MOBILE FLOATS: мини-плеер + микшер опускаем к панели big-controls */}
