@@ -63,7 +63,53 @@ const Studio: React.FC = () => {
   );
 
   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  
+    // ===== Install app (PWA) =====
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [isInstalled, setIsInstalled] = useState(false);
+
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  const isStandaloneIOS = (navigator as any).standalone === true;
+
+  useEffect(() => {
+    const handler = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+
+    window.addEventListener("beforeinstallprompt", handler);
+
+    const mq = window.matchMedia("(display-mode: standalone)");
+    const update = () => setIsInstalled(mq.matches || isStandaloneIOS);
+    update();
+    mq.addEventListener?.("change", update);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handler);
+      mq.removeEventListener?.("change", update);
+    };
+  }, [isStandaloneIOS]);
+
+  const handleInstall = async () => {
+    // iOS: нет системного промпта установки
+    if (isIOS && !isStandaloneIOS) {
+      alert('iOS: нажми "Поделиться" → "На экран Домой" (Add to Home Screen).');
+      return;
+    }
+
+    // Android/Chrome: если промпта нет — даём fallback
+    if (!deferredPrompt) {
+      alert('Открой меню браузера (⋮) → "Install app" / "Установить приложение".');
+      return;
+    }
+
+    deferredPrompt.prompt();
+    try {
+      await deferredPrompt.userChoice;
+    } finally {
+      setDeferredPrompt(null);
+    }
+  };
+
   // My rituals (.mint packs)
   const ritualsMintInputRef = useRef<HTMLInputElement | null>(null);
   const [showMyRituals, setShowMyRituals] = useState(false);
@@ -1078,15 +1124,8 @@ const Studio: React.FC = () => {
       </button>
 
       {/* Mobile: close button inside old menu block */}
-      {isMobile && (
-        <button
-          onClick={() => {
-            setActiveMenu("none");
-            setShowMobileMenu(false);
-          }}
-        >
-          Close
-        </button>
+            {isMobile && !isInstalled && (
+        <button onClick={handleInstall}>Install app</button>
       )}
     </div>
 
