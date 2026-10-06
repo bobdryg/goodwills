@@ -39,7 +39,7 @@ type MintPack = {
   videoBlob: Blob | null;
 };
 
-const RECORD_LIMIT_SEC = 100;
+const RECORD_LIMIT_SEC = 300;
 
 function hexFromBuffer(buf: ArrayBuffer): string {
   const bytes = new Uint8Array(buf);
